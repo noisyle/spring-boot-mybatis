@@ -6,21 +6,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.noisyle.demo.mybatis.repository.UserRepository;
+import com.noisyle.demo.mybatis.repository.TopicRepository;
 
 @RestController
-public class IndexController {
+@RequestMapping(value="/api")
+public class TopicController {
     @Autowired
-    private UserRepository userRepository;
+    private TopicRepository topicRepository;
     
-    @RequestMapping(value="/users", method=RequestMethod.GET)
+    @RequestMapping(value="/topics", method=RequestMethod.GET)
     public Object findAll() {
-        return userRepository.findAll();
+        return topicRepository.findAll();
     }
     
-    @RequestMapping(value="/user/{id}", method=RequestMethod.GET)
-    public Object findUserById(@PathVariable Long id) {
-        return userRepository.findUserById(id);
+    @RequestMapping(value="/topic/{id}", method=RequestMethod.GET)
+    public Object findTopicById(@PathVariable Long id) {
+        return topicRepository.findTopicById(id);
     }
     
 }

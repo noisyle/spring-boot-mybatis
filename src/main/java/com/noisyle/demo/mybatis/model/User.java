@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User implements UserDetails {
     private static final long serialVersionUID = -3511166048885804263L;
     
-    private Long id; 
-    private String username; 
+    private Long id;
+    private String username;
     private String password;
     private String mobile;
     private List<Role> roles;
@@ -54,7 +54,7 @@ public class User implements UserDetails {
     public List<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
         for(Role role: roles) {
-            auth.add(new SimpleGrantedAuthority(role.getRolename()));
+            auth.add(new SimpleGrantedAuthority(role.getRoleName()));
         }
         return auth;
     }

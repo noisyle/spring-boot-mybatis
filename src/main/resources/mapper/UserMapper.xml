@@ -12,7 +12,7 @@
 	<resultMap id="UserAndRole" type="com.noisyle.demo.mybatis.model.User" extends="User">
 		<collection property="roles" ofType="com.noisyle.demo.mybatis.model.Role">
 			<id column="roleid" property="id" />
-			<result column="rolename" property="rolename" />
+			<result column="rolename" property="roleName" />
 		</collection>
 	</resultMap>
 

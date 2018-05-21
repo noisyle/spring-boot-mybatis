@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noisyle.demo.mybatis.repository.TopicRepository">
+	<resultMap id="Topic" type="com.noisyle.demo.mybatis.model.Topic">
+		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<id property="userId" column="userId" javaType="java.lang.Long"></id>
+		<result property="title" column="title" javaType="java.lang.String" />
+		<result property="content" column="content" javaType="java.lang.String" />
+	</resultMap>
+
+    <select id="findTopicById" resultMap="Topic" parameterType="long">
+        select t.* from forum_topic t where t.id=#{id}
+    </select>
+
+</mapper>

@@ -1,8 +1,8 @@
 package com.noisyle.demo.mybatis.model;
 
 public class Role {
-    private Long id; 
-    private String rolename; 
+    private Long id;
+    private String roleName;
     
     public Long getId() {
         return id;
@@ -10,11 +10,11 @@ public class Role {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
     
 }
