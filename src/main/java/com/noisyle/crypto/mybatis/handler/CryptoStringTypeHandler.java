@@ -20,6 +20,7 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
     public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType)
             throws SQLException {
         try {
+            logger.debug("i: {}, parameter: {}", i, parameter);
             ps.setString(i, DESTool.encrypt(parameter));
         } catch (Exception e) {
             logger.error(parameter, e);
@@ -36,6 +37,7 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
                 logger.error("{}: {}", columnName, rs.getString(columnName), e);
             }
         }
+        logger.debug("columnName: {}, value: {}", columnName, str);
         return str;
     }
 
@@ -49,6 +51,7 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
                 logger.error("{}: {}", columnIndex, rs.getString(columnIndex), e);
             }
         }
+        logger.debug("columnIndex: {}, value: {}", columnIndex, str);
         return str;
     }
 
@@ -62,6 +65,7 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
                 logger.error("{}: {}", columnIndex, cs.getString(columnIndex), e);
             }
         }
+        logger.debug("columnIndex: {}, value: {}", columnIndex, str);
         return str;
     }
 
