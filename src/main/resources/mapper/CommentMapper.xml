@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noisyle.demo.mybatis.repository.CommentRepository">
+
+    <insert id="insert" parameterType="com.noisyle.demo.mybatis.model.Comment">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT seq_forum_comment.nextVal from dual
+        </selectKey>
+        insert into forum_comment values(#{id}, #{userId}, #{topicId}, #{content})
+    </insert>
+
+</mapper>

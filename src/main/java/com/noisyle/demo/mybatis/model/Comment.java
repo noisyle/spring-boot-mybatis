@@ -1,14 +1,10 @@
 package com.noisyle.demo.mybatis.model;
 
-import java.util.List;
-
-public class Topic {
+public class Comment {
     private Long id;
     private Long userId;
-    private String title;
+    private Long topicId;
     private String content;
-    private List<Comment> comments;
-    
     public Long getId() {
         return id;
     }
@@ -21,23 +17,17 @@ public class Topic {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-    public String getTitle() {
-        return title;
+    public Long getTopicId() {
+        return topicId;
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTopicId(Long topicId) {
+        this.topicId = topicId;
     }
     public String getContent() {
         return content;
     }
     public void setContent(String content) {
         this.content = content;
-    }
-    public List<Comment> getComments() {
-        return comments;
-    }
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
 }

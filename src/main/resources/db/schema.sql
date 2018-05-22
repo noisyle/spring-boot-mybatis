@@ -39,3 +39,9 @@ create table forum_comment
    content varchar(4000) not null,
    primary key(id)
 );
+
+create sequence seq_forum_comment
+ START WITH 1000
+ INCREMENT BY 1
+ NOCACHE
+ NOCYCLE;

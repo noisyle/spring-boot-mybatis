@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.noisyle.demo.mybatis.repository.UserRepository">
 	<resultMap id="User" type="com.noisyle.demo.mybatis.model.User">
-		<id property="id" column="id" javaType="java.lang.Long"></id>
+		<id property="id" column="id" javaType="java.lang.Long" />
 		<result property="username" column="username" javaType="java.lang.String" />
 		<result property="password" column="password" javaType="java.lang.String" />
 		<result property="mobile" column="mobile"
