@@ -15,4 +15,6 @@ public interface TopicRepository {
     public List<Topic> findAll();
     
     public Topic findTopicById(Long id);
+    
+    public List<Topic> findTopicsByPage();
 }

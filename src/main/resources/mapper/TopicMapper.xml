@@ -12,4 +12,7 @@
         select t.* from forum_topic t where t.id=#{id}
     </select>
 
+    <select id="findTopicsByPage" resultMap="Topic">
+        select t.* from forum_topic t
+    </select>
 </mapper>
