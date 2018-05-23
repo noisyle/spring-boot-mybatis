@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="/jsp/common/head.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/jsp/common/head.jsp" />
 	</head>
 	<body>
 	    <div class="topic"></div>
