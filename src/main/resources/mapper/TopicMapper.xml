@@ -9,7 +9,7 @@
 	</resultMap>
 
     <resultMap id="TopicAndComment" type="com.noisyle.demo.mybatis.model.Topic" extends="Topic">
-        <collection property="comments" ofType="com.noisyle.demo.mybatis.model.Comment">
+        <collection property="comments" ofType="com.noisyle.demo.mybatis.model.Comment" notNullColumn="cId">
             <id column="cId" property="id" />
             <result column="id" property="topicId" />
             <result column="cuserid" property="userId" />

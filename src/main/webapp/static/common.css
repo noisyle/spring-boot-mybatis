@@ -1,3 +1,9 @@
 body, button, input, select, textarea {
   font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
+
+.pagination-previous,
+.pagination-next,
+.pagination-link {
+  background-color: #fff;
+}

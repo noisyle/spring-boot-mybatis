@@ -3,14 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="webjars/bulma/0.7.1/css/bulma.min.css">
-		<link rel="stylesheet" href="static/common.css">
-		<link rel="stylesheet" href="static/login.css">
+		<jsp:include page="/jsp/common/head.jsp"></jsp:include>
+		<link rel="stylesheet" href="${ctx}/static/login.css">
 	</head>
 	<body>
 		<section class="hero is-success is-fullheight">

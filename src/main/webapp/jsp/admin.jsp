@@ -4,18 +4,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="webjars/bulma/0.7.1/css/bulma.min.css">
-		<link rel="stylesheet" href="static/common.css">
-		<link rel="stylesheet" href="static/admin.css">
+		<jsp:include page="/jsp/common/head.jsp"></jsp:include>
+		<link rel="stylesheet" href="${ctx}/static/admin.css">
 	</head>
 	<body>
-	
-	    <!-- START NAV -->
 		<nav class="navbar is-white">
 			<div class="container">
 				<div class="navbar-brand">
@@ -32,7 +24,6 @@
 				</div>
 			</div>
 		</nav>
-		<!-- END NAV -->
 	    <div class="container">
 	        <div class="columns">
 	            <div class="column is-3">
@@ -245,7 +236,5 @@
 	            </div>
 	        </div>
 	    </div>
-<!-- 		<script src="webjars/jquery/3.3.1/dist/jquery.min.js"></script> -->
-		<script src="static/common.js"></script>
 	</body>
 </html>
