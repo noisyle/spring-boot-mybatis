@@ -121,8 +121,8 @@
 <script id="tpl-topic" type="text/html">
 {{if list}}
 {{each list}}
-<article class="post">
-	<h4>{{$value.content}}</h4>
+<article class="post" title="{{$value.content}}">
+	<h4 class="topic-title">{{$value.content}}</h4>
 	<div class="media">
 		<div class="media-left">
 			<p class="image is-32x32">
@@ -146,8 +146,8 @@
 {{/if}}
 </script>
 <script id="tpl-pagination" type="text/html">
-<a class="pagination-previous" {{if isFirstPage}}title="到第一页了" disabled{{/if}} data-pagenum="{{prePage}}">上一页</a>
-<a class="pagination-next" {{if isLastPage}}title="到最后一页了" disabled{{/if}} data-pagenum="{{nextPage}}">下一页</a>
+<a class="pagination-previous" {{if isFirstPage}}title="没有上一页了" disabled{{/if}} data-pagenum="{{prePage}}">上一页</a>
+<a class="pagination-next" {{if isLastPage}}title="没有下一页了" disabled{{/if}} data-pagenum="{{nextPage}}">下一页</a>
 <ul class="pagination-list">
 	{{each navigatepageNums}}
 	<li><a class="pagination-link {{if $value==pageNum}}is-current{{/if}}" data-pagenum="{{$value}}">{{$value}}</a></li>

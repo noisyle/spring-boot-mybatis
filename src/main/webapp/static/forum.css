@@ -57,3 +57,4 @@ article.post:last-child {
 .menu-list li{
   padding: 5px;
 }
+.topic-title {overflow:hidden;text-overflow:ellipsis; -o-text-overflow:ellipsis;white-space:nowrap;width:100%;}
