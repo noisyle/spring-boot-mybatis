@@ -7,6 +7,7 @@ public class Topic {
     private Long userId;
     private String title;
     private String content;
+    private User creator;
     private List<Comment> comments;
     
     public Long getId() {
@@ -32,6 +33,12 @@ public class Topic {
     }
     public void setContent(String content) {
         this.content = content;
+    }
+    public User getCreator() {
+        return creator;
+    }
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
     public List<Comment> getComments() {
         return comments;

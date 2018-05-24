@@ -22,11 +22,6 @@ public class TopicController {
     @Autowired
     private CommentRepository commentRepository;
     
-    @RequestMapping(value="/topics", method=RequestMethod.GET)
-    public Object findAll() {
-        return topicRepository.findAll();
-    }
-    
     @RequestMapping(value="/topic/{id}", method=RequestMethod.GET)
     public Object findTopicById(@PathVariable Long id) {
         return topicRepository.findTopicById(id);
@@ -35,7 +30,7 @@ public class TopicController {
     @RequestMapping(value="/topics/p{p:\\d+}", method=RequestMethod.GET)
     public Object queryFence(@PathVariable int p) {
         Page<Topic> page = PageHelper.startPage(p, 5);
-        topicRepository.findTopicsByPage();
+        topicRepository.findTopics();
         return page.toPageInfo();
     }
     

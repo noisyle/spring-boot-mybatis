@@ -15,13 +15,34 @@
             <result column="cuserid" property="userId" />
             <result column="ccontent" property="content" />
         </collection>
+<!--         <association property="creator" javaType="com.noisyle.demo.mybatis.model.User"> -->
+<!-- 			<id property="id" column="uid" javaType="java.lang.Long" /> -->
+<!-- 			<result property="username" column="uusername" javaType="java.lang.String" /> -->
+<!--         </association> -->
     </resultMap>
 
     <select id="findTopicById" resultMap="TopicAndComment" parameterType="long">
-        select t.*, c.id as cid, c.userid as cuserid, c.content as ccontent from forum_topic t left join forum_comment c on c.topicid=t.id where t.id=#{id}
+        select t.*,
+               c.id as cid,
+               c.userid as cuserid,
+               c.content as ccontent,
+               u.id as uid,
+               u.username as uusername
+          from forum_topic t 
+            left join forum_comment c on c.topicid=t.id
+            left join sys_user u on u.id=t.userid
+        where t.id=#{id}
     </select>
 
-    <select id="findTopicsByPage" resultMap="Topic">
-        select t.* from forum_topic t
+    <select id="findTopics" resultMap="TopicAndComment">
+        select t.*,
+               c.id as cid,
+               c.userid as cuserid,
+               c.content as ccontent,
+               u.id as uid,
+               u.username as uusername
+          from forum_topic t 
+            left join forum_comment c on c.topicid=t.id
+            left join sys_user u on u.id=t.userid
     </select>
 </mapper>

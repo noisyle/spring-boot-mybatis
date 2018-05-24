@@ -120,9 +120,9 @@
 
 <script id="tpl-topic" type="text/html">
 {{if list}}
-{{each list}}
-<article class="post" title="{{$value.content}}">
-	<h4 class="topic-title">{{$value.content}}</h4>
+{{each list topic index}}
+<article class="post">
+	<h4 class="topic-title" title="{{topic.content}}">{{topic.content}}</h4>
 	<div class="media">
 		<div class="media-left">
 			<p class="image is-32x32">
@@ -138,7 +138,7 @@
 			</div>
 		</div>
 		<div class="media-right">
-			<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
+			<span class="has-text-grey-light"><i class="fa fa-comments"></i> {{topic.comments.length}}</span>
 		</div>
 	</div>
 </article>
