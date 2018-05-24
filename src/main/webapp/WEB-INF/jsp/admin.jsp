@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="/WEB-INF/jsp/common/head.jsp" />
+		<%@ include file="/WEB-INF/jsp/common/head.jsp" %>
 		<link rel="stylesheet" href="${ctx}/static/admin.css">
 	</head>
 	<body>
@@ -18,7 +18,7 @@
 				</div>
 				<div id="navMenu" class="navbar-menu">
 					<div class="navbar-start">
-						<a class="navbar-item" href="../"> 返回论坛 </a>
+						<a class="navbar-item" href="${ctx}"> 返回论坛 </a>
 					</div>
 	
 				</div>

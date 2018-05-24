@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="/WEB-INF/jsp/common/head.jsp" />
+		<%@ include file="/WEB-INF/jsp/common/head.jsp" %>
 		<link rel="stylesheet" href="${ctx}/static/login.css">
 	</head>
 	<body>

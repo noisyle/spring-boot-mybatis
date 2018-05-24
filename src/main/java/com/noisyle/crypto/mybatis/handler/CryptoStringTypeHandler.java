@@ -37,7 +37,6 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
                 logger.error("{}: {}", columnName, rs.getString(columnName), e);
             }
         }
-        logger.debug("columnName: {}, value: {}", columnName, str);
         return str;
     }
 
@@ -51,7 +50,6 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
                 logger.error("{}: {}", columnIndex, rs.getString(columnIndex), e);
             }
         }
-        logger.debug("columnIndex: {}, value: {}", columnIndex, str);
         return str;
     }
 
@@ -65,7 +63,6 @@ public class CryptoStringTypeHandler extends BaseTypeHandler<String> {
                 logger.error("{}: {}", columnIndex, cs.getString(columnIndex), e);
             }
         }
-        logger.debug("columnIndex: {}, value: {}", columnIndex, str);
         return str;
     }
 

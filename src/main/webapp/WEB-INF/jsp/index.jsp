@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/WEB-INF/jsp/common/head.jsp" />
+<%@ include file="/WEB-INF/jsp/common/head.jsp" %>
 <link rel="stylesheet" href="${ctx}/static/forum.css">
 </head>
 <body>
@@ -29,7 +29,7 @@
 					<div class="field is-grouped">
 						<sec:authorize access="hasRole('ADMIN')">
 						<p class="control">
-							<a class="button is-small" href="admin">
+							<a class="button is-small" href="${ctx}/admin">
 								<span class="icon">
 									<i class="fa fa-server"></i>
 								</span>
