@@ -81,8 +81,8 @@
 	<div class="container">
 		<div class="navbar-menu">
 			<div class="navbar-start">
-				<a class="navbar-item is-active" href="?timeline">最新</a>
-				<a class="navbar-item" href="?popular">热门</a>
+				<a class="navbar-item <c:if test="${param.timeline ne null}">is-active</c:if>" href="?timeline">最新</a>
+				<a class="navbar-item <c:if test="${param.popular ne null}">is-active</c:if>" href="?popular">热门</a>
 			</div>
 			<div class="navbar-end">
 				<div class="navbar-item">
@@ -132,7 +132,7 @@
 		<div class="media-content">
 			<div class="content">
 				<p>
-					<a href="#">@rapper</a> replied 3 hours ago &nbsp;
+					<a href="#">@{{topic.creator.username}}</a> {{topic.createTime | duration}} &nbsp;
 					<span class="tag">Question</span>
 				</p>
 			</div>
@@ -155,6 +155,19 @@
 </ul>
 </script>
 <script>
+template.defaults.imports.duration = function(value){
+	var duration = Math.floor((new Date().getTime() - new Date(value).getTime()) / 1000);
+	if(duration < 60) {
+		return '刚刚';
+	} else if(duration > 30*24*60*60) {
+		return '很久以前';
+	} else {
+		var days = Math.floor(duration/(24*60*60));
+		var hours = Math.floor(duration%(24*60*60)/(60*60));
+        var minutes = Math.floor(duration%(60*60)/(60));
+		return days?days+'天前':hours?hours+'小时前':minutes?minutes+'分钟前':'';
+	}
+};
 $(function(){
 	loadPage();
 	$('.pagination').on('click', 'a', function(e){
@@ -166,7 +179,7 @@ $(function(){
 });
 function loadPage(pageNum){
 	$.ajax({
-		url: ctx + '/api/topics/p' + (pageNum || 1),
+		url: ctx + '/api/topics/p' + (pageNum || 1)<c:if test="${param.popular ne null}"> + '?order=popular'</c:if>,
 		method: 'get',
 		type: 'json',
 		success: function(res){

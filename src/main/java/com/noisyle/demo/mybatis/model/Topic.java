@@ -1,5 +1,6 @@
 package com.noisyle.demo.mybatis.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Topic {
@@ -7,6 +8,7 @@ public class Topic {
     private Long userId;
     private String title;
     private String content;
+    private Date createTime;
     private User creator;
     private List<Comment> comments;
     
@@ -33,6 +35,12 @@ public class Topic {
     }
     public void setContent(String content) {
         this.content = content;
+    }
+    public Date getCreateTime() {
+        return createTime;
+    }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
     public User getCreator() {
         return creator;

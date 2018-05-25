@@ -6,6 +6,11 @@
 		<result property="userId" column="userId" javaType="java.lang.Long" />
 		<result property="title" column="title" javaType="java.lang.String" />
 		<result property="content" column="content" javaType="java.lang.String" />
+		<result property="createTime" column="createtime" javaType="java.util.Date" />
+        <association property="creator" javaType="com.noisyle.demo.mybatis.model.User">
+            <id property="id" column="uid" javaType="java.lang.Long" />
+            <result property="username" column="uusername" javaType="java.lang.String" />
+        </association>
 	</resultMap>
 
     <resultMap id="TopicAndComment" type="com.noisyle.demo.mybatis.model.Topic" extends="Topic">
@@ -15,10 +20,6 @@
             <result column="cuserid" property="userId" />
             <result column="ccontent" property="content" />
         </collection>
-<!--         <association property="creator" javaType="com.noisyle.demo.mybatis.model.User"> -->
-<!-- 			<id property="id" column="uid" javaType="java.lang.Long" /> -->
-<!-- 			<result property="username" column="uusername" javaType="java.lang.String" /> -->
-<!--         </association> -->
     </resultMap>
 
     <select id="findTopicById" resultMap="TopicAndComment" parameterType="long">

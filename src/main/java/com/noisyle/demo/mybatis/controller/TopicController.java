@@ -28,8 +28,13 @@ public class TopicController {
     }
     
     @RequestMapping(value="/topics/p{p:\\d+}", method=RequestMethod.GET)
-    public Object queryFence(@PathVariable int p) {
+    public Object queryFence(@PathVariable int p, @RequestParam(required=false, defaultValue="") String order) {
         Page<Topic> page = PageHelper.startPage(p, 5);
+        if("popular".equals(order)) {
+            page.setOrderBy("title");
+        } else {
+            page.setOrderBy("createtime desc");
+        }
         topicRepository.findTopics();
         return page.toPageInfo();
     }

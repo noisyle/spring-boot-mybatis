@@ -28,6 +28,7 @@ create table forum_topic
    userid integer not null,
    title varchar(4000) not null,
    content varchar(4000) not null,
+   createtime timestamp not null default sysdate,
    primary key(id)
 );
 
@@ -41,7 +42,7 @@ create table forum_comment
 );
 
 create sequence seq_forum_comment
- START WITH 1000
- INCREMENT BY 1
- NOCACHE
- NOCYCLE;
+   START WITH 1000
+   INCREMENT BY 1
+   NOCACHE
+   NOCYCLE;
