@@ -99,19 +99,19 @@
 			<nav class="pagination is-centered" role="navigation" aria-label="pagination"></nav>
 		</div>
 		<div class="column is-3">
-			<a class="button is-primary is-block is-alt is-large" href="#">发帖</a>
+			<a class="button is-primary is-block is-alt is-large" href="#">发布</a>
 			<aside class="menu">
 				<p class="menu-label">
 					标签
 				</p>
 				<ul class="menu-list">
-					<li><span class="tag is-primary is-medium ">Dashboard</span></li>
-					<li><span class="tag is-link is-medium ">Customers</span></li>
-					<li><span class="tag is-light is-danger is-medium ">Authentication</span></li>
-					<li><span class="tag is-dark is-medium ">Payments</span></li>
-					<li><span class="tag is-success is-medium ">Transfers</span></li>
-					<li><span class="tag is-warning is-medium ">Balance</span></li>
-					<li><span class="tag is-medium ">Question</span></li>
+					<li><span class="tag is-primary is-medium">名人名言</span></li>
+					<li><span class="tag is-link is-medium">经典台词</span></li>
+					<li><span class="tag is-success is-medium">心灵美文</span></li>
+					<li><span class="tag is-warning is-medium">鸡汤有毒</span></li>
+					<li><span class="tag is-light is-danger is-medium">鸡汤有屎</span></li>
+					<li><span class="tag is-dark is-medium">屎里有毒</span></li>
+					<li><span class="tag is-medium">_(:з」∠)_</span></li>
 				</ul>
 			</aside>
 		</div>
@@ -122,7 +122,7 @@
 {{if list}}
 {{each list topic index}}
 <article class="post">
-	<h4 class="topic-title" title="{{topic.content}}">{{topic.content}}</h4>
+	<h4 class="topic-title" title="{{topic.content}}"><a href="${ctx}/topic/{{topic.id}}">{{topic.content}}</a></h4>
 	<div class="media">
 		<div class="media-left">
 			<p class="image is-32x32">
@@ -133,7 +133,7 @@
 			<div class="content">
 				<p>
 					<a href="#">@{{topic.creator.username}}</a> {{topic.createTime | duration}} &nbsp;
-					<span class="tag">Question</span>
+					<span class="tag is-link">经典台词</span>
 				</p>
 			</div>
 		</div>
