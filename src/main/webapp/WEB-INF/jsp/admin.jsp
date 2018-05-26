@@ -18,7 +18,7 @@
 				</div>
 				<div id="navMenu" class="navbar-menu">
 					<div class="navbar-start">
-						<a class="navbar-item" href="${ctx}"> 返回论坛 </a>
+						<a class="navbar-item" href="${ctx}/"> 返回论坛 </a>
 					</div>
 	
 				</div>

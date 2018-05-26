@@ -22,7 +22,7 @@
 		</div>
 		<div id="topNav" class="navbar-menu">
 			<div class="navbar-start">
-				<a class="navbar-item" href="">首页</a>
+				<a class="navbar-item" href="${ctx}/">首页</a>
 			</div>
 			<div class="navbar-end">
 				<div class="navbar-item">
@@ -81,8 +81,8 @@
 	<div class="container">
 		<div class="navbar-menu">
 			<div class="navbar-start">
-				<a class="navbar-item <c:if test="${param.timeline ne null}">is-active</c:if>" href="?timeline">最新</a>
-				<a class="navbar-item <c:if test="${param.popular ne null}">is-active</c:if>" href="?popular">热门</a>
+				<a class="navbar-item ${param.order eq null ? "is-active" : ""}" href="${ctx}/">最新</a>
+				<a class="navbar-item ${param.order eq "popular" ? "is-active" : ""}" href="${ctx}/?order=popular">热门</a>
 			</div>
 			<div class="navbar-end">
 				<div class="navbar-item">
@@ -94,9 +94,7 @@
 </nav>
 <section class="container">
 	<div class="columns">
-		<div class="column is-9">
-			<div class="box content"></div>
-			<nav class="pagination is-centered" role="navigation" aria-label="pagination"></nav>
+		<div class="column is-9 articles">
 		</div>
 		<div class="column is-3">
 			<a class="button is-primary is-block is-alt is-large" href="#">发布</a>
@@ -119,6 +117,9 @@
 </section>
 
 <script id="tpl-topic" type="text/html">
+{{extend 'tpl-pagination'}}
+{{block 'content'}}
+<div class="box content">
 {{if list}}
 {{each list topic index}}
 <article class="post">
@@ -144,8 +145,12 @@
 </article>
 {{/each}}
 {{/if}}
+</div>
+{{/block}}
 </script>
 <script id="tpl-pagination" type="text/html">
+{{block 'content'}}{{/block}}
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
 <a class="pagination-previous" {{if isFirstPage}}title="没有上一页了" disabled{{/if}} data-pagenum="{{prePage}}">上一页</a>
 <a class="pagination-next" {{if isLastPage}}title="没有下一页了" disabled{{/if}} data-pagenum="{{nextPage}}">下一页</a>
 <ul class="pagination-list">
@@ -153,6 +158,7 @@
 	<li><a class="pagination-link {{if $value==pageNum}}is-current{{/if}}" data-pagenum="{{$value}}">{{$value}}</a></li>
 	{{/each}}
 </ul>
+</nav>
 </script>
 <script>
 template.defaults.imports.duration = function(value){
@@ -170,7 +176,7 @@ template.defaults.imports.duration = function(value){
 };
 $(function(){
 	loadPage();
-	$('.pagination').on('click', 'a', function(e){
+	$('.articles').on('click', '.pagination a', function(e){
 		var target = e.target;
 		if(!$(target).hasClass('is-current')) {
 			loadPage($(target).data('pagenum'));
@@ -179,12 +185,11 @@ $(function(){
 });
 function loadPage(pageNum){
 	$.ajax({
-		url: ctx + '/api/topics/p' + (pageNum || 1)<c:if test="${param.popular ne null}"> + '?order=popular'</c:if>,
+		url: ctx + '/api/topics/p' + (pageNum || 1) + '?order=${param.order}',
 		method: 'get',
 		type: 'json',
 		success: function(res){
-            $('.box.content').html(template('tpl-topic', res));
-            $('.pagination').html(template('tpl-pagination', res));
+            $('.articles').html(template('tpl-topic', res));
 		}
 	});
 }
