@@ -10,8 +10,8 @@
 <script>
 var ctx = '${ctx}';
 </script>
-<link rel="stylesheet" href="${ctx}/webjars/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="${ctx}/webjars/bulma/0.7.1/css/bulma.min.css">
+<link rel="stylesheet" href="${ctx}/webjars/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="${ctx}/webjars/bulma/css/bulma.min.css">
 <link rel="stylesheet" href="${ctx}/static/common.css">
-<script src="${ctx}/webjars/jquery/3.3.1/dist/jquery.min.js"></script>
-<script src="${ctx}/webjars/art-template/4.12.1/lib/template-web.js"></script>
+<script src="${ctx}/webjars/jquery/dist/jquery.min.js"></script>
+<script src="${ctx}/webjars/art-template/lib/template-web.js"></script>

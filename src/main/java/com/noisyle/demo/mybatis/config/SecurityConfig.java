@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .headers().frameOptions().disable()
             .and()
             .authorizeRequests()
-                .antMatchers("/webjars/**", "/static/**", "/", "/h2-console/**", "/login", "/logout", "/favicon.ico", "/api/**").permitAll()
+                .antMatchers("/webjars/**", "/static/**", "/", "/h2-console/**", "/login", "/logout", "/favicon.ico", "/api/**", "/websocket/**").permitAll()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").hasRole("USER")

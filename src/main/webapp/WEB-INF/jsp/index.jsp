@@ -160,6 +160,9 @@
 </ul>
 </nav>
 </script>
+<script src="${ctx}/webjars/sockjs-client/dist/sockjs.min.js"></script>
+<script src="${ctx}/webjars/stomp-websocket/lib/stomp.min.js"></script>
+<script src="${ctx}/static/forum.js"></script>
 <script>
 template.defaults.imports.duration = function(value){
 	var duration = Math.floor((new Date().getTime() - new Date(value).getTime()) / 1000);
