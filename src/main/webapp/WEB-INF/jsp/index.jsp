@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/jsp/common/head.jsp" %>
+<link rel="stylesheet" href="${ctx}/webjars/toastr/build/toastr.min.css">
 <link rel="stylesheet" href="${ctx}/static/forum.css">
 </head>
 <body>
@@ -12,7 +13,7 @@
 	<div class="container">
 		<div class="navbar-brand">
 			<a class="navbar-item navbar-text" href="#">
-				Bulma Forum
+				Crowbar
 			</a>
 			<div class="navbar-burger burger" data-target="topNav">
 				<span></span>
@@ -162,40 +163,85 @@
 </script>
 <script src="${ctx}/webjars/sockjs-client/dist/sockjs.min.js"></script>
 <script src="${ctx}/webjars/stomp-websocket/lib/stomp.min.js"></script>
-<script src="${ctx}/static/forum.js"></script>
+<script src="${ctx}/webjars/toastr/build/toastr.min.js"></script>
 <script>
-template.defaults.imports.duration = function(value){
-	var duration = Math.floor((new Date().getTime() - new Date(value).getTime()) / 1000);
-	if(duration < 60) {
-		return '刚刚';
-	} else if(duration > 30*24*60*60) {
-		return '很久以前';
-	} else {
-		var days = Math.floor(duration/(24*60*60));
-		var hours = Math.floor(duration%(24*60*60)/(60*60));
-        var minutes = Math.floor(duration%(60*60)/(60));
-		return days?days+'天前':hours?hours+'小时前':minutes?minutes+'分钟前':'';
+(function($){
+
+	template.defaults.imports.duration = function(value){
+		var duration = Math.floor((new Date().getTime() - new Date(value).getTime()) / 1000);
+		if(duration < 60) {
+			return '刚刚';
+		} else if(duration > 30*24*60*60) {
+			return '很久以前';
+		} else {
+			var days = Math.floor(duration/(24*60*60));
+			var hours = Math.floor(duration%(24*60*60)/(60*60));
+	        var minutes = Math.floor(duration%(60*60)/(60));
+			return days?days+'天前':hours?hours+'小时前':minutes?minutes+'分钟前':'';
+		}
+	};
+	function loadPage(pageNum){
+		$.ajax({
+			url: ctx + '/api/topics/p' + (pageNum || 1) + '?order=${param.order}',
+			method: 'get',
+			type: 'json',
+			success: function(res){
+	            $('.articles').html(template('tpl-topic', res));
+			}
+		});
 	}
-};
-$(function(){
-	loadPage();
-	$('.articles').on('click', '.pagination a', function(e){
-		var target = e.target;
-		if(!$(target).hasClass('is-current')) {
-			loadPage($(target).data('pagenum'));
-		}
+	$(function(){
+		loadPage();
+		$('.articles').on('click', '.pagination a', function(e){
+			var target = e.target;
+			if(!$(target).hasClass('is-current')) {
+				loadPage($(target).data('pagenum'));
+			}
+		});
 	});
-});
-function loadPage(pageNum){
-	$.ajax({
-		url: ctx + '/api/topics/p' + (pageNum || 1) + '?order=${param.order}',
-		method: 'get',
-		type: 'json',
-		success: function(res){
-            $('.articles').html(template('tpl-topic', res));
-		}
+	
+	
+	
+	var stompClient = null;
+	
+	function connect(callback) {
+	    var socket = new SockJS(ctx + '/websocket');
+	    stompClient = Stomp.over(socket);
+	    stompClient.connect({}, callback);
+	}
+
+	function disconnect() {
+	    if (stompClient !== null) {
+	        stompClient.disconnect();
+	    }
+	    console.log("Disconnected");
+	}
+
+	function sendName() {
+		<sec:authorize access="hasRole('USER')">
+	    stompClient.send("/app/login", {}, JSON.stringify({'username': '<sec:authentication property="name" />'}));
+	    </sec:authorize>
+		<sec:authorize access="!hasRole('USER')">
+	    stompClient.send("/app/login", {}, JSON.stringify({'username': '游客'}));
+	    </sec:authorize>
+	}
+
+	toastr.options.positionClass = 'toast-bottom-right';
+	toastr.options.newestOnTop = true;
+	function showGreeting(message) {
+	    toastr.info(message)
+	}
+
+	$(function () {
+		connect(function (frame) {
+	        console.log('Connected: ' + frame);
+	        stompClient.subscribe('/message/greetings', function (greeting) {
+	            showGreeting(JSON.parse(greeting.body).content);
+	        });
+	        sendName();
+	    });
 	});
-}
+})(jQuery);
 </script>
 </body>
 </html>

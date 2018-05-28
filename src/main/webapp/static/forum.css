@@ -68,3 +68,7 @@ article.post:last-child {
 .topic-title>a {
   color: inherit;
 }
+
+.toast.toast-info {
+  background-color: #00d1b2;
+}

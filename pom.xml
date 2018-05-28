@@ -136,6 +136,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>toastr</artifactId>
+            <version>2.1.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
     </dependencies>
 
