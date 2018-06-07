@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workbook>
+  <worksheet name="Sheet1">
+    <section startRow="0" endRow="0">
+      <mapping cell="A1">department.name</mapping>
+      <mapping cell="B1">department.name</mapping>
+    </section>
+    <loop startRow="1" endRow="1" items="topics" var="topic" varType="com.noisyle.demo.mybatis.model.Topic">
+      <section startRow="1" endRow="1">
+        <mapping row="1" col="0">topic.title</mapping>
+        <mapping row="1" col="1">topic.createTime</mapping>
+      </section>
+      <loopbreakcondition>
+        <rowcheck offset="0">
+          <cellcheck offset="0"></cellcheck>
+        </rowcheck>
+      </loopbreakcondition>
+    </loop>
+  </worksheet>
+</workbook>

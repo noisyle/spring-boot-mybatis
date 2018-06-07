@@ -42,7 +42,7 @@
 						</sec:authorize>
 						<sec:authorize access="hasRole('USER')">
 						<p class="control">
-							<a class="button is-small" href="logout">
+							<a class="button is-small" href="${ctx}/logout">
 								<span class="icon">
 									<i class="fa fa-sign-out"></i>
 								</span>
@@ -64,7 +64,7 @@
 							</a>
 						</p>
 						<p class="control">
-							<a class="button is-small is-info is-outlined" href="login">
+							<a class="button is-small is-info is-outlined" href="${ctx}/login">
 								<span class="icon">
 									<i class="fa fa-user"></i>
 								</span>
@@ -98,10 +98,23 @@
 		<div class="column is-9 articles">
 		</div>
 		<div class="column is-3">
-			<a class="button is-primary is-block is-alt is-large" href="#">发布</a>
-			<sec:authorize access="hasRole('ADMIN')">
-			<a class="button is-block" href="#" id="btnExport">导出</a>
-			</sec:authorize>
+            <sec:authorize access="hasRole('ADMIN')">
+			<div class="buttons has-addons">
+                <a class="button" href="#" id="btnExport">
+                    <span class="icon is-small">
+                        <i class="fa fa-download"></i>
+                    </span>
+                    <span>导出</span>
+                </a>
+                <a class="button" href="#" id="btnImportModal">
+                    <span class="icon is-small">
+                        <i class="fa fa-upload"></i>
+                    </span>
+                    <span>导入</span>
+                </a>
+			</div>
+            </sec:authorize>
+            <a class="button is-primary is-block is-alt is-large" href="#">发布</a>
 			<aside class="menu">
 				<p class="menu-label">
 					标签
@@ -119,6 +132,28 @@
 		</div>
 	</div>
 </section>
+<div class="modal" id="modalImport">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+    <form action="${ctx}/api/topics/import" method="post" enctype="multipart/form-data">
+        <header class="modal-card-head">
+            <p class="modal-card-title">导入</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="file" name="file">
+                    </div>
+                </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" id="btnImport">确定</button>
+            <button class="button cancel">取消</button>
+        </footer>
+    </form>
+    </div>
+</div>
 
 <script id="tpl-topic" type="text/html">
 {{extend 'tpl-pagination'}}
@@ -205,12 +240,23 @@
 			window.open(ctx + '/api/topics/export');
 			return false;
 		});
+		$('#btnImportModal').on('click', function(e){
+			$('#modalImport').addClass('is-active');
+			return false;
+		});
+		$('.modal-background, .modal-card-head>.delete, .modal-card-foot>.button.cancel').on('click', function(e){
+			$(e.target).closest('.modal').removeClass('is-active');
+			return false;
+		});
+		
+		if('${message}'!=='') {
+			showGreeting('${message}');
+		}
 	});
 	
 	
 	
 	var stompClient = null;
-	
 	function connect(callback) {
 	    var socket = new SockJS(ctx + '/websocket');
 	    stompClient = Stomp.over(socket);

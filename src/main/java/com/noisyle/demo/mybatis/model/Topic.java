@@ -55,4 +55,8 @@ public class Topic {
         this.comments = comments;
     }
 
+    @Override
+    public String toString() {
+        return String.format("id: %s, title: %s, createTime: %s", id, title, createTime);
+    }
 }
