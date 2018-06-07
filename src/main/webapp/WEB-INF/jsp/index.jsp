@@ -99,6 +99,9 @@
 		</div>
 		<div class="column is-3">
 			<a class="button is-primary is-block is-alt is-large" href="#">发布</a>
+			<sec:authorize access="hasRole('ADMIN')">
+			<a class="button is-block" href="#" id="btnExport">导出</a>
+			</sec:authorize>
 			<aside class="menu">
 				<p class="menu-label">
 					标签
@@ -197,6 +200,10 @@
 			if(!$(target).hasClass('is-current')) {
 				loadPage($(target).data('pagenum'));
 			}
+		});
+		$('#btnExport').on('click', function(e){
+			window.open(ctx + '/api/topics/export');
+			return false;
 		});
 	});
 	
