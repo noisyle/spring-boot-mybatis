@@ -178,7 +178,7 @@
 			</div>
 		</div>
 		<div class="media-right">
-			<span class="has-text-grey-light"><i class="fa fa-comments"></i> {{topic.comments.length}}</span>
+			<span class="has-text-grey-light"><i class="fa fa-comments"></i> {{topic.commentCount}}</span>
 		</div>
 	</div>
 </article>

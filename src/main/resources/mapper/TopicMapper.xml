@@ -13,6 +13,10 @@
         </association>
 	</resultMap>
 
+    <resultMap id="TopicSummary" type="com.noisyle.demo.mybatis.model.Topic" extends="Topic">
+        <id property="commentCount" column="commentcount" javaType="java.lang.Long" />
+    </resultMap>
+
     <resultMap id="TopicAndComment" type="com.noisyle.demo.mybatis.model.Topic" extends="Topic">
         <collection property="comments" ofType="com.noisyle.demo.mybatis.model.Comment" notNullColumn="cId">
             <id column="cId" property="id" />
@@ -35,15 +39,13 @@
         where t.id=#{id}
     </select>
 
-    <select id="findTopics" resultMap="TopicAndComment">
+    <select id="findTopics" resultMap="TopicSummary">
         select t.*,
-               c.id as cid,
-               c.userid as cuserid,
-               c.content as ccontent,
+               c.count_ as commentcount,
                u.id as uid,
                u.username as uusername
           from forum_topic t 
-            left join forum_comment c on c.topicid=t.id
+            left join (select count(1) as count_, topicid from forum_comment group by topicid) c on c.topicid=t.id
             left join sys_user u on u.id=t.userid
     </select>
 </mapper>

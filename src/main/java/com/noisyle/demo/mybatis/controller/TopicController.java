@@ -53,7 +53,7 @@ public class TopicController {
     public Object findTopicByPage(@PathVariable int p, @RequestParam(required=false, defaultValue="") String order) {
         Page<Topic> page = PageHelper.startPage(p, 5);
         if("popular".equals(order)) {
-            page.setOrderBy("title");
+            page.setOrderBy("commentcount desc");
         } else {
             page.setOrderBy("createtime desc");
         }

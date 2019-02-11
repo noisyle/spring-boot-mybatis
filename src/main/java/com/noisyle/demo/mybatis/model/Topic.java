@@ -10,6 +10,7 @@ public class Topic {
     private String content;
     private Date createTime;
     private User creator;
+    private Long commentCount;
     private List<Comment> comments;
     
     public Long getId() {
@@ -47,6 +48,12 @@ public class Topic {
     }
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+    public Long getCommentCount() {
+        return commentCount;
+    }
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
     }
     public List<Comment> getComments() {
         return comments;
