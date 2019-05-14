@@ -1,9 +1,10 @@
 create table sys_user
 (
-   id integer not null,
-   username varchar(255) not null,
-   password varchar(255) not null,
-   mobile varchar(255),
+   id integer not null COMMENT '唯一标识',
+   username varchar(255) not null COMMENT '登录名',
+   password varchar(255) not null COMMENT '密码',
+   mobile varchar(255) COMMENT '手机号',
+   salary varchar(255) COMMENT '收入',
    primary key(id)
 );
 

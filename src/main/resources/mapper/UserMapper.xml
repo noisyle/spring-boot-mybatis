@@ -7,6 +7,8 @@
 		<result property="password" column="password" javaType="java.lang.String" />
 		<result property="mobile" column="mobile"
 			typeHandler="com.noisyle.crypto.mybatis.handler.CryptoStringTypeHandler" />
+		<result property="salary" column="salary"
+			typeHandler="com.noisyle.crypto.mybatis.handler.CryptoDoubleTypeHandler" />
 	</resultMap>
 
 	<resultMap id="UserAndRole" type="com.noisyle.demo.mybatis.model.User" extends="User">

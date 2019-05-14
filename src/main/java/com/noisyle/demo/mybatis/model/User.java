@@ -16,6 +16,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String mobile;
+    private Double salary;
     private List<Role> roles;
     
     public Long getId() {
@@ -41,6 +42,12 @@ public class User implements UserDetails {
     }
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+    public Double getSalary() {
+        return salary;
+    }
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
     public List<Role> getRoles() {
         return roles;
